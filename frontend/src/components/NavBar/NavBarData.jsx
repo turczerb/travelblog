@@ -8,51 +8,71 @@ export const NavbarData = [
   },
   {
     title: "Destinations",
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
         title: "Africa ",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/africa",
       },
       {
         title: "Asia",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/asia",
       },
       {
         title: "The Caribbean",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/caribbeam",
       },
       {
         title: "Central America",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/central-am",
       },
       {
         title: "Europe",
         path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
       },
       {
         title: "The Middle East ",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/middle-east",
       },
       {
         title: "North America",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/north-am",
       },
       {
         title: "Oceania",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/oceania",
       },
       {
         title: "South America",
-        path: "destinations/europe",
-        icon: <IoIcons.IoIosPaper />,
+        path: "destinations/south-am",
+      },
+    ],
+  },
+  {
+    title: "Type of travel",
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "Solo travel",
+        path: "/",
+      },
+      {
+        title: "Female travel",
+        path: "/",
+      },
+      {
+        title: "Adventure travel",
+        path: "",
+      },
+      {
+        title: "Luxury travel",
+        path: "",
+      },
+      {
+        title: "Eco travel",
+        path: "",
       },
     ],
   },
