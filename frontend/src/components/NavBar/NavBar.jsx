@@ -6,7 +6,7 @@ const images = require.context("../../images"); // be importálom a képet  You 
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-row: 1fr 1fr;
 `;
 
 const Nav = styled.nav`
@@ -19,19 +19,47 @@ const Nav = styled.nav`
   justify-content: space-evenly;
 `;
 
+const ImgContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
 const Pic = styled.img`
   width: 150px;
+`;
+
+const HeaderImage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const NavBarContents = styled.div`
+  width: 75%;
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 const Navbar = () => {
   let img = images("./logo.png");
   return (
     <Container>
-      <Pic src={img} alt="pic"></Pic>
+      <ImgContainer>
+        <div></div>
+        <div>
+          <HeaderImage>
+            <Pic src={img} alt="pic"></Pic>
+          </HeaderImage>
+        </div>
+        <div></div>
+      </ImgContainer>
       <Nav>
-        {NavbarData.map((item, index) => {
-          return <SubNavBar item={item} key={index} />;
-        })}{" "}
+        <NavBarContents>
+          {NavbarData.map((item, index) => {
+            return <SubNavBar item={item} key={index} />;
+          })}
+        </NavBarContents>
+        <div></div>
         <div>
           <LoginAndReg />
         </div>

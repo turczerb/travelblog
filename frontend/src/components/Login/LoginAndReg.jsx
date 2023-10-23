@@ -1,4 +1,5 @@
 import styled from "styled-components"; //css
+import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 
 const Container = styled.div`
   display: grid;
@@ -6,16 +7,14 @@ const Container = styled.div`
   grid-gap: 20px;
 `;
 
-const Title = styled.div`
-  background-color: blue;
-`;
+const Title = styled(Link)``;
 
 const LoginAndReg = () => {
   return (
     <div>
       <Container>
-        <Title>login</Title>
-        <Title>regi</Title>
+        <Title to="/login">login</Title>
+        <Title to="/registration">registration</Title>
       </Container>
     </div>
   );

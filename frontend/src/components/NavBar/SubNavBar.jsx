@@ -5,7 +5,10 @@ import useComponentVisible from "../../hooks/useComponentVisible";
 
 const Element = styled.div``;
 
-const DropDownContainer = styled.div``;
+//posi absolute: lenyilo menu nm nyilik le mindenütt csak ahol kell.
+const DropDownContainer = styled.div`
+  position: absolute;
+`;
 
 const SubElement = styled(Link)``;
 
