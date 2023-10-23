@@ -25,7 +25,8 @@ const ImgContainer = styled.div`
 `;
 
 const Pic = styled.img`
-  width: 150px;
+  width: 170px;
+  padding-top: 20px;
 `;
 
 const HeaderImage = styled.div`

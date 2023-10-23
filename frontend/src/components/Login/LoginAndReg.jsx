@@ -7,7 +7,13 @@ const Container = styled.div`
   grid-gap: 20px;
 `;
 
-const Title = styled(Link)``;
+const Title = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    border-left: 2px solid #946b2d;
+  }
+`;
 
 const LoginAndReg = () => {
   return (

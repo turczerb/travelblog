@@ -10,9 +10,17 @@ const DropDownContainer = styled.div`
   position: absolute;
 `;
 
-const SubElement = styled(Link)``;
+const SubElement = styled(Link)`
+  text-decoration: none;
+  color: black;
+  background-color: yellow;
+`;
 
-const Title = styled.div``;
+const Title = styled.div`
+  &:hover {
+    border-left: 2px solid #946b2d;
+  }
+`;
 
 const SubNavBar = ({ item }) => {
   const { ref, isComponentVisible, setIsComponentVisible } =
