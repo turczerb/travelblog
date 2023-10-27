@@ -40,8 +40,9 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     //we want to send a post request --> fetch what we have to doo.
-    await fetch(
+    const response = await fetch(
       "http://localhost:4000/registration",
 
       {
@@ -52,6 +53,12 @@ const Registration = () => {
         },
       }
     );
+    console.log(response);
+    if (response.status !== 200) {
+      alert("registration failed");
+    } else {
+      alert("registration success");
+    }
   };
 
   return (

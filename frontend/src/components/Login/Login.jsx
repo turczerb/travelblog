@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components"; //css
 
 const Container = styled.div`
@@ -30,11 +31,45 @@ const Stilo = styled.input`
 `;
 
 const Login = () => {
+  //itt is kellenek statek
+  //onchange. //ez a jelenlegi cím ezzel állitom be. pl handletitlechange
+
+  const [userName, setUserName] = useState("");
+  const [passWord, setPassword] = useState("");
+
+  function handleUsernameChange(e) {
+    setUserName(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //here we do somethin maybe the login?
+    await fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: JSON.stringify({ userName, passWord }),
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit}>
       <InnerContainer>
-        <Stilo type="text" placeholder="username" />
-        <Stilo type="password" placeholder="password" />
+        <Stilo
+          type="text"
+          placeholder="username"
+          value={userName}
+          onChange={handleUsernameChange}
+        />
+        <Stilo
+          type="password"
+          placeholder="password"
+          value={passWord}
+          onChange={handlePasswordChange}
+        />
         <Submit>login</Submit>
       </InnerContainer>
     </Container>
