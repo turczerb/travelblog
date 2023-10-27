@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import styled from "styled-components"; //css
 
 const Container = styled.div`
@@ -36,6 +37,7 @@ const Login = () => {
 
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   function handleUsernameChange(e) {
     setUserName(e.target.value);
@@ -45,18 +47,31 @@ const Login = () => {
     setPassword(e.target.value);
   }
 
-  const handleSubmit = async (e) => {
+  const login = async (e) => {
     e.preventDefault();
     //here we do somethin maybe the login?
-    await fetch("http://localhost:4000/login", {
+    const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({ userName, passWord }),
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
     });
+
+    //ha be tudtuk sikeressen jelentkezni -->redirect to the hompage--> kell 1 state
+    if (response.ok) {
+      setRedirect(true);
+    } else {
+      alert("wrong cred");
+    }
   };
 
+  //ha be vagyunk siekersen lépve akkor menjen a föoldalra
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
-    <Container onSubmit={handleSubmit}>
+    <Container onSubmit={login}>
       <InnerContainer>
         <Stilo
           type="text"

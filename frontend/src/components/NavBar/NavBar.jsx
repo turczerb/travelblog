@@ -27,7 +27,7 @@ const ImgContainer = styled.div`
 const Pic = styled.img`
   width: 170px;
   padding-top: 20px;
-  transition: transform 1s ease-in-out;
+  transition: transform s ease-in-out;
 
   &:hover {
     transform: rotate(360deg);
