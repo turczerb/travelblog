@@ -55,6 +55,7 @@ const Login = () => {
       body: JSON.stringify({ userName, passWord }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
+      //if we have cookie we can save it in cred
     });
 
     //ha be tudtuk sikeressen jelentkezni -->redirect to the hompage--> kell 1 state

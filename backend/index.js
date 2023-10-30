@@ -5,12 +5,14 @@ const User = require("./models/User");
 const bcrypt = require("bcryptjs");
 const app = express();
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w34wegw2345werjwkkhgfdfgg";
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-app.use(express.json()); //express json parser
+app.use(express.json()); //express json parserű
+app.use(cookieParser()); //wee need to add a cookie parser
 
 //connect to the database
 mongoose.connect(
@@ -40,7 +42,7 @@ app.post("/login", async (req, res) => {
   const userDoc = await User.findOne({ userName });
   const passOk = bcrypt.compareSync(passWord, userDoc.passWord);
   if (passOk) {
-    //user is logged in--> joson webtoken kell
+    //user is logged in--> joson webtoken kell. de ez nm jel meg vmiért
     jwt.sign({ userName, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
       res.cookie("token", token).json("ok");
@@ -49,6 +51,17 @@ app.post("/login", async (req, res) => {
     //not loggedin
     res.status(400).json("wrong credentials");
   }
+});
+
+//get mert megszerzem az infót
+app.get("/profile", (req, res) => {
+  //ww are able to read the cookies ??
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, (err, info) => {
+    if (err) throw err;
+    res.json(info);
+  });
+  res.json(req.cookies);
 });
 
 app.listen(4000); //itt fog figyelni?
