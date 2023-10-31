@@ -37,15 +37,19 @@ app.post("/registration", async (req, res) => {
 
 //ez itt egy endpoint h belépjek a loginra? nemtudom. 2 paraméter 1 arrow function
 app.post("/login", async (req, res) => {
-  const { userName, passWord } = req.body;
+  const { userName, passWord, isAdmin } = req.body;
   //here we have to check is the databases password and username is the same? dont forget it is bcrypted
   const userDoc = await User.findOne({ userName });
+
   const passOk = bcrypt.compareSync(passWord, userDoc.passWord);
   if (passOk) {
     //user is logged in--> joson webtoken kell. de ez nm jel meg vmiért
     jwt.sign({ userName, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie("token", token).json("ok");
+      res.cookie("token", token).json({
+        id: userDoc._id,
+        userName,
+      });
     });
   } else {
     //not loggedin
@@ -62,6 +66,10 @@ app.get("/profile", (req, res) => {
     res.json(info);
   });
   res.json(req.cookies);
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json("Ok");
 });
 
 app.listen(4000); //itt fog figyelni?

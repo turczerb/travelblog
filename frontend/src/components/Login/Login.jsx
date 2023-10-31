@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import styled from "styled-components"; //css
+import { UserContext } from "../UserContext";
 
 const Container = styled.div`
   display: flex;
@@ -38,6 +39,8 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
 
   function handleUsernameChange(e) {
     setUserName(e.target.value);
@@ -52,7 +55,7 @@ const Login = () => {
     //here we do somethin maybe the login?
     const response = await fetch("http://localhost:4000/login", {
       method: "POST",
-      body: JSON.stringify({ userName, passWord }),
+      body: JSON.stringify({ userName, passWord, isAdmin }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       //if we have cookie we can save it in cred
@@ -60,7 +63,10 @@ const Login = () => {
 
     //ha be tudtuk sikeressen jelentkezni -->redirect to the hompage--> kell 1 state
     if (response.ok) {
-      setRedirect(true);
+      response.json().then((userInfo) => {
+        setUserInfo(userInfo);
+        setRedirect(true);
+      });
     } else {
       alert("wrong cred");
     }
