@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Registration from "./components/Login/Registration";
 import { UserContextProvider } from "./components/UserContext";
+import CreateNewPost from "./components/Post/CreateNewPost";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/login" exact element={<Login />} />
           <Route path="/registration" exact element={<Registration />} />
+          <Route path="/create" exact element={<CreateNewPost />} />
         </Routes>
       </div>
     </UserContextProvider>
