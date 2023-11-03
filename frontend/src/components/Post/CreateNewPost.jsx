@@ -29,21 +29,14 @@ const options = [
   { value: "v", label: "mogyó" },
 ];
 
-const options2 = NavbarData.map((item, i) => {
-  if (item.title === "Destinations") {
-    return (
-      <>
-        {item.subNav.map((desti, index) => {
-          return {
-            label: desti.title,
-            value: desti,
-            key: index,
-          };
-        })}
-      </>
-    );
+const options2 = NavbarData[2].subNav;
+/*NavbarData.map((item, i) => {
+  if (item.title === "Type of travel") {
+    console.log(item);
+    console.log(item.subNav);
+    return item.subNav;
   }
-});
+});*/
 
 const CreateNewPost = () => {
   const [placeChange, setPlaceChange] = useState("");
@@ -97,7 +90,8 @@ const CreateNewPost = () => {
         </select>
 
         <Select
-          options={options}
+          placeholder={"type of travel"}
+          options={options2}
           value={selectedOptions}
           onChange={handleChoose}
           isMulti={true}
