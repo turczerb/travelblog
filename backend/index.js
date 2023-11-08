@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer"); //middleware for upload files
 const uploadMiddleware = multer({ dest: "uploads/" });
+const fs = require("fs");
 
 const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w34wegw2345werjwkkhgfdfgg";
@@ -75,6 +76,19 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/post", uploadMiddleware.array("file", 4), (req, res) => {
+  //rename the files. and add some extension so we can open it
+  console.log(req.files.length);
+  if (req.files) {
+    for (let i = 0; i < req.files.length; i++) {
+      console.log("renaming");
+      const { originalname, path } = req.files[i];
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1]; //utolsó elem
+      newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+    }
+  }
+
   res.json({ files: req.files });
 });
 

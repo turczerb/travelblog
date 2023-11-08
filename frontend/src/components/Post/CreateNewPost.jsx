@@ -119,6 +119,7 @@ const CreateNewPost = () => {
             onChange={handlePicChange}
             multiple="multiple"
             name="img"
+            required
           />
           <select
             onChange={handlePlaceChange}
