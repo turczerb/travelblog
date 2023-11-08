@@ -74,8 +74,8 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("Ok");
 });
 
-app.post("/post", uploadMiddleware.single("file"), (req, res) => {
-  res.json({ files: req.file });
+app.post("/post", uploadMiddleware.array("file", 4), (req, res) => {
+  res.json({ files: req.files });
 });
 
 app.listen(4000); //itt fog figyelni?

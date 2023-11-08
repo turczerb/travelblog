@@ -70,25 +70,30 @@ const CreateNewPost = () => {
   };
 
   const handlePicChange = (e) => {
-    setFiles(e.target.files[0]);
+    setFiles(e.target.files);
   };
 
   const createNewP = async (e) => {
     e.preventDefault();
+    if (!files) {
+      console.log("no file selected");
+      return;
+    }
     const data = new FormData(); //object. will contan everythinf
 
-    data.set("title", title);
-    data.set("summary", summary);
-    data.set("placeChange", placeChange);
-    data.set("selectedOptions", selectedOptions);
-    data.set("content", content);
-    data.set("file", files);
-
-    console.log(data);
+    for (let i = 0; i < files.length; i++) {
+      data.append("file", files[i]);
+    }
+    data.append("title", title);
+    data.append("summary", summary);
+    data.append("placeChange", placeChange);
+    data.append("selectedOptions", selectedOptions);
+    data.append("content", content);
 
     const response = await fetch("http://localhost:4000/post", {
       method: "POST",
       body: data,
+      credentials: "include",
     });
     await response.json();
   };
@@ -109,7 +114,12 @@ const CreateNewPost = () => {
             value={summary}
             onChange={handleSummaryChange}
           />
-          <input type="file" onChange={handlePicChange} multiple="multiple" />
+          <input
+            type="file"
+            onChange={handlePicChange}
+            multiple="multiple"
+            name="img"
+          />
           <select
             onChange={handlePlaceChange}
             placeholder="select one!"
