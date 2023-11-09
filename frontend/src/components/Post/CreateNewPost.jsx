@@ -47,6 +47,7 @@ const CreateNewPost = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [files, setFiles] = useState(null);
   const [content, setContent] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const handlePlaceChange = (e) => {
     setPlaceChange(e.target.value);
@@ -91,6 +92,7 @@ const CreateNewPost = () => {
       console.log("added option");
     }
     data.append("content", content);
+    data.append("isChecked", isChecked);
 
     const response = await fetch("http://localhost:4000/post", {
       method: "POST",

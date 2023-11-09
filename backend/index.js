@@ -92,8 +92,15 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
 
   selectedOptionsValues = [];
 
-  const { title, summary, placeChange, selectedOptions, content, cover } =
-    req.body;
+  const {
+    title,
+    summary,
+    placeChange,
+    selectedOptions,
+    content,
+    cover,
+    isChecked,
+  } = req.body;
 
   if (selectedOptions) {
     console.log("checking selected options");
@@ -112,6 +119,7 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
     selectedOptions: selectedOptionsValues,
     content,
     cover: coverPath,
+    isChecked,
   });
   res.json(postDoc);
 });

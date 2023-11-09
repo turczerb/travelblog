@@ -12,6 +12,7 @@ const PostSchema = new Schema(
 
     content: String,
     cover: [String],
+    isChecked: { type: Boolean },
   },
   {
     timestamps: true,
