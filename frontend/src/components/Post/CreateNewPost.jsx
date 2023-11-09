@@ -86,7 +86,10 @@ const CreateNewPost = () => {
     data.append("title", title);
     data.append("summary", summary);
     data.append("placeChange", placeChange);
-    data.append("selectedOptions", selectedOptions);
+    for (let i = 0; i < selectedOptions.length; i++) {
+      data.append("selectedOptions", selectedOptions[i].value);
+      console.log("added option");
+    }
     data.append("content", content);
 
     const response = await fetch("http://localhost:4000/post", {

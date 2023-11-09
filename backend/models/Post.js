@@ -8,13 +8,8 @@ const PostSchema = new Schema(
     title: String,
     summary: String,
     placeChange: String,
-    selectedOptions: [
-      {
-        type: Schema.Types.Mixed,
-        label: String,
-        value: String,
-      },
-    ],
+    selectedOptions: [Number],
+
     content: String,
     cover: [String],
   },

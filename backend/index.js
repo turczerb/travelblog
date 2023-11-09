@@ -78,11 +78,9 @@ app.post("/logout", (req, res) => {
 
 app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
   //rename the files. and add some extension so we can open it
-  console.log(req.files.length);
   coverPath = [];
   if (req.files) {
     for (let i = 0; i < req.files.length; i++) {
-      console.log("renaming");
       const { originalname, path } = req.files[i];
       const parts = originalname.split(".");
       const ext = parts[parts.length - 1]; //utolsó elem
@@ -91,14 +89,27 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
       coverPath.push(newPath);
     }
   }
-  //most fogjuk a sémát használni
+
+  selectedOptionsValues = [];
+
   const { title, summary, placeChange, selectedOptions, content, cover } =
     req.body;
+
+  if (selectedOptions) {
+    console.log("checking selected options");
+    for (let i = 0; i < selectedOptions.length; i++) {
+      selectedOptionsValues.push(selectedOptions[i]);
+    }
+  }
+
+  console.log("options: " + selectedOptionsValues[1]);
+  //most fogjuk a sémát használni
+
   const postDoc = await Post.create({
     title,
     summary,
     placeChange,
-    selectedOptions,
+    selectedOptions: selectedOptionsValues,
     content,
     cover: coverPath,
   });
