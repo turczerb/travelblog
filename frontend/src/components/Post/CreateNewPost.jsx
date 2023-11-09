@@ -80,7 +80,6 @@ const CreateNewPost = () => {
       return;
     }
     const data = new FormData(); //object. will contan everythinf
-
     for (let i = 0; i < files.length; i++) {
       data.append("file", files[i]);
     }

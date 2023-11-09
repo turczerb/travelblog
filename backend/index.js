@@ -2,6 +2,7 @@ const express = require("express"); //itt nmtom
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/User");
+const Post = require("./models/Post");
 const bcrypt = require("bcryptjs");
 const app = express();
 const jwt = require("jsonwebtoken");
@@ -75,9 +76,10 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("Ok");
 });
 
-app.post("/post", uploadMiddleware.array("file", 4), (req, res) => {
+app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
   //rename the files. and add some extension so we can open it
   console.log(req.files.length);
+  coverPath = [];
   if (req.files) {
     for (let i = 0; i < req.files.length; i++) {
       console.log("renaming");
@@ -86,10 +88,21 @@ app.post("/post", uploadMiddleware.array("file", 4), (req, res) => {
       const ext = parts[parts.length - 1]; //utolsó elem
       newPath = path + "." + ext;
       fs.renameSync(path, newPath);
+      coverPath.push(newPath);
     }
   }
-
-  res.json({ files: req.files });
+  //most fogjuk a sémát használni
+  const { title, summary, placeChange, selectedOptions, content, cover } =
+    req.body;
+  const postDoc = await Post.create({
+    title,
+    summary,
+    placeChange,
+    selectedOptions,
+    content,
+    cover: coverPath,
+  });
+  res.json(postDoc);
 });
 
 app.listen(4000); //itt fog figyelni?
