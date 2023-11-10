@@ -51,6 +51,7 @@ const CreateNewPost = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [failPost, setFailPost] = useState(false);
 
   const handlePlaceChange = (e) => {
     setPlaceChange(e.target.value);
@@ -104,10 +105,12 @@ const CreateNewPost = () => {
     });
     await response.json();
     if (response.ok) {
-      setRedirect(true);
+      // setRedirect(true);
+      setVisible(true);
+    } else {
+      setVisible(true);
+      setFailPost(true);
     }
-    setVisible(true);
-    console.log(visible);
   };
 
   return (
@@ -175,7 +178,12 @@ const CreateNewPost = () => {
           </ButtonConti>
         </Form>
       </Container>
-      <PopUp visible={visible} setVisible={setVisible} />
+      <PopUp
+        visible={visible}
+        setVisible={setVisible}
+        failPost={failPost}
+        setFailPost={failPost}
+      />
     </OutContainer>
   );
 };
