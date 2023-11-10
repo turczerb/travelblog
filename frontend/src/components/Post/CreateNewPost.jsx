@@ -2,6 +2,7 @@ import styled from "styled-components"; //css
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
+import PopUp from "../PopUpFolder/PopUp";
 import { NavbarData } from "../NavBar/NavBarData";
 import Select from "react-select";
 
@@ -48,6 +49,8 @@ const CreateNewPost = () => {
   const [files, setFiles] = useState(null);
   const [content, setContent] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const handlePlaceChange = (e) => {
     setPlaceChange(e.target.value);
@@ -100,6 +103,11 @@ const CreateNewPost = () => {
       credentials: "include",
     });
     await response.json();
+    if (response.ok) {
+      setRedirect(true);
+    }
+    setVisible(true);
+    console.log(visible);
   };
 
   return (
@@ -167,6 +175,7 @@ const CreateNewPost = () => {
           </ButtonConti>
         </Form>
       </Container>
+      <PopUp visible={visible} setVisible={setVisible} />
     </OutContainer>
   );
 };
