@@ -17,6 +17,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  text-decoration: none;
 `;
 
 const ImgContainer = styled.div`

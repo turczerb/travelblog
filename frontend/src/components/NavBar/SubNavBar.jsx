@@ -2,6 +2,7 @@ import styled from "styled-components"; //css
 //nyitva vagy csukva van a sub nav bár ehhez kell majd az useComponentVisible hook ami külön mappában van
 import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 import useComponentVisible from "../../hooks/useComponentVisible";
+import "../../index.css";
 
 const Element = styled.div``;
 
@@ -14,6 +15,10 @@ const SubElement = styled(Link)`
   text-decoration: none;
   color: black;
   background-color: yellow;
+`;
+
+const NavElem = styled(Link)`
+  text-decoration: none;
 `;
 
 const Title = styled.div`
