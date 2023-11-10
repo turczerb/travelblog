@@ -1,9 +1,10 @@
-import Navbar from "./NavBar/NavBar";
+import PostContainer from "./Blogpost/PostContainer";
 
 const Home = () => {
   return (
     <div>
       <div>home komp</div>
+      <PostContainer />
     </div>
   );
 };

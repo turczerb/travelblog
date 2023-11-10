@@ -36,7 +36,7 @@ const SubNavBar = ({ item }) => {
     <div ref={ref}>
       <Element to={item.path} onClick={item.subNav && showComponent}>
         <div>
-          <span>{item.title}</span>
+          <a href="/">{item.title}</a>
           {item.subNav && isComponentVisible
             ? item.iconOpened
             : item.subNav
