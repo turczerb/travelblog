@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Registration from "./components/Login/Registration";
 import { UserContextProvider } from "./components/UserContext";
-import CreateNewPost from "./components/Post/CreateNewPost";
+import CreateNewPost from "./components/CreatePost/CreateNewPost";
 
 function App() {
   return (

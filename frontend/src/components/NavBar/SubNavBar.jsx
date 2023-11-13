@@ -17,10 +17,6 @@ const SubElement = styled(Link)`
   background-color: yellow;
 `;
 
-const NavElem = styled(Link)`
-  text-decoration: none;
-`;
-
 const Title = styled.div`
   &:hover {
     border-left: 2px solid #946b2d;

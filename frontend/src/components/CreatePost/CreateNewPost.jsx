@@ -5,6 +5,7 @@ import { useState } from "react";
 import PopUp from "../PopUpFolder/PopUp";
 import { NavbarData } from "../NavBar/NavBarData";
 import Select from "react-select";
+import "./create.css";
 
 const OutContainer = styled.div`
   display: grid;

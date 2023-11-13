@@ -9,10 +9,10 @@ const PostSchema = new Schema(
     summary: String,
     placeChange: String,
     selectedOptions: [Number],
-
     content: String,
     cover: [String],
     isChecked: { type: Boolean },
+    author: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

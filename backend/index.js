@@ -124,6 +124,11 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
   res.json(postDoc);
 });
 
+app.get("/post", async (req, res) => {
+  const valami = await Post.find();
+  res.json(valami);
+});
+
 app.listen(4000); //itt fog figyelni?
 
 //mongodb+srv://turczerb:l9As72eXSp6dAfa6@cluster0.tjppqxh.mongodb.net/?retryWrites=true&w=majority
