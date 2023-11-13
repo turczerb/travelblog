@@ -99,7 +99,9 @@ const Registration = () => {
           value={passWordAgain}
           onChange={(event) => setPasswordAgain(event.target.value)}
         />
-        <Submit disabled={!userName || !email || !passWord}>Register</Submit>
+        <Submit disabled={!userName || !email || !passWord || !passWordAgain}>
+          Register
+        </Submit>
       </InnerContainer>
     </Container>
   );

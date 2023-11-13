@@ -130,8 +130,7 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
 });
 
 app.get("/post", async (req, res) => {
-  const valami = await Post.find();
-  res.json(valami);
+  res.json(await Post.find().populate("author", ["userName"]));
 });
 
 app.listen(4000); //itt fog figyelni?

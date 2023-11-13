@@ -13,7 +13,7 @@ const Post = (props) => {
       </div>
       <div>
         <div>
-          <p>name</p>
+          <p>{props.author}</p>
           <time>{format(new Date(props.createdAt), "MMMM d, yyyy HH:mm")}</time>
         </div>
         <div>
