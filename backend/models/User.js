@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 const UserSchema = new Schema({
   userName: {
     type: String,
-    unique: [true, "Username alraedy available"],
+    unique: [true, "Username already used"],
     required: [true, "Username is required"],
   },
   passWord: { type: String },

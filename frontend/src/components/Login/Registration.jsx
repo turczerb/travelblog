@@ -1,5 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components"; //css
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 // some magic here to app.post works at backend part.
 
 const Container = styled.div`
@@ -36,8 +39,8 @@ const Registration = () => {
   const [passWord, setPassword] = useState("");
   const [passWordAgain, setPasswordAgain] = useState("");
   const [isAdmin, setIsadmin] = useState(false);
-  //const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [email, setEmail] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,13 +60,14 @@ const Registration = () => {
     console.log(response);
     if (response.status !== 200) {
       alert("registration failed");
-    }
-    if (response.status === 400) {
-      alert("username is already taken");
     } else {
-      alert("registration success");
+      //alert("registration success");
+      setRedirect(true);
     }
   };
+  if (redirect) {
+    return <Navigate to={"/login"} />;
+  }
 
   return (
     <Container>
@@ -74,6 +78,7 @@ const Registration = () => {
           value={userName}
           onChange={(event) => setUserName(event.target.value)}
         />
+
         <Stilo
           type="email"
           placeholder="email"
@@ -94,7 +99,7 @@ const Registration = () => {
           value={passWordAgain}
           onChange={(event) => setPasswordAgain(event.target.value)}
         />
-        <Submit>Register</Submit>
+        <Submit disabled={!userName || !email || !passWord}>Register</Submit>
       </InnerContainer>
     </Container>
   );

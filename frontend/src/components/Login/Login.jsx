@@ -68,6 +68,7 @@ const Login = () => {
         setRedirect(true);
       });
     } else {
+      console.log("lefut ez az ág??");
       alert("wrong cred");
     }
   };
@@ -92,7 +93,7 @@ const Login = () => {
           value={passWord}
           onChange={handlePasswordChange}
         />
-        <Submit>login</Submit>
+        <Submit disabled={!userName || !passWord}>login</Submit>
       </InnerContainer>
     </Container>
   );
