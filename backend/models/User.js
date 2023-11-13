@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   },
   passWord: { type: String },
   isAdmin: { type: Boolean },
+  email: { type: String, required: [true, "Email address is required"] },
 });
 
 const UserModel = model("User", UserSchema);

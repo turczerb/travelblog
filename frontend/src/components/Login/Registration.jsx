@@ -36,7 +36,8 @@ const Registration = () => {
   const [passWord, setPassword] = useState("");
   const [passWordAgain, setPasswordAgain] = useState("");
   const [isAdmin, setIsadmin] = useState(false);
-  const [isButtonDisabled, setButtonDisabled] = useState(false);
+  //const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +48,7 @@ const Registration = () => {
 
       {
         method: "POST",
-        body: JSON.stringify({ userName, passWord, isAdmin }), // converts JavaScript objects into strings
+        body: JSON.stringify({ userName, passWord, isAdmin, email }), // converts JavaScript objects into strings
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,6 +57,9 @@ const Registration = () => {
     console.log(response);
     if (response.status !== 200) {
       alert("registration failed");
+    }
+    if (response.status === 400) {
+      alert("username is already taken");
     } else {
       alert("registration success");
     }
@@ -66,10 +70,18 @@ const Registration = () => {
       <InnerContainer onSubmit={handleSubmit}>
         <Stilo
           type="text"
-          placeholder="register"
+          placeholder="username"
           value={userName}
           onChange={(event) => setUserName(event.target.value)}
         />
+        <Stilo
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+
         <Stilo
           type="password"
           placeholder="password"

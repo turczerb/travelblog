@@ -25,13 +25,14 @@ mongoose.connect(
 
 //register function. post req: send some informatinon. api endpoint this is
 app.post("/registration", async (req, res) => {
-  const { userName, passWord, isAdmin } = req.body; //?
+  const { userName, passWord, isAdmin, email } = req.body; //?
   //Create a user. dupricated issue we have to handle with try catch
   try {
     const userDoc = await User.create({
       userName,
       passWord: bcrypt.hashSync(passWord, salt),
       isAdmin,
+      email,
     });
     res.json(userDoc);
   } catch (e) {

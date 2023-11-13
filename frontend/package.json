@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "alert": "^6.0.1",
     "components": "^0.1.0",
     "date-fns": "^2.30.0",
     "multiselect-react-dropdown": "^2.0.25",
