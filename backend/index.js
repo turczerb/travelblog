@@ -92,36 +92,40 @@ app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
 
   selectedOptionsValues = [];
 
-  const {
-    title,
-    summary,
-    placeChange,
-    selectedOptions,
-    content,
-    cover,
-    isChecked,
-  } = req.body;
-
-  if (selectedOptions) {
+  if (req.body.selectedOptions) {
     console.log("checking selected options");
-    for (let i = 0; i < selectedOptions.length; i++) {
-      selectedOptionsValues.push(selectedOptions[i]);
+    for (let i = 0; i < req.body.selectedOptions.length; i++) {
+      selectedOptionsValues.push(req.body.selectedOptions[i]);
     }
   }
 
   console.log("options: " + selectedOptionsValues[1]);
   //most fogjuk a sémát használni
 
-  const postDoc = await Post.create({
-    title,
-    summary,
-    placeChange,
-    selectedOptions: selectedOptionsValues,
-    content,
-    cover: coverPath,
-    isChecked,
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+    const {
+      title,
+      summary,
+      placeChange,
+      selectedOptions,
+      content,
+      cover,
+      isChecked,
+    } = req.body;
+    const postDoc = await Post.create({
+      title,
+      summary,
+      placeChange,
+      selectedOptions: selectedOptionsValues,
+      content,
+      cover: coverPath,
+      isChecked,
+      author: info.id,
+    });
+    res.json(postDoc);
   });
-  res.json(postDoc);
 });
 
 app.get("/post", async (req, res) => {
