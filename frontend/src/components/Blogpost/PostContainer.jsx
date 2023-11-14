@@ -30,6 +30,7 @@ const PostContainer = () => {
               selectedOptions={item.selectedOptions}
               summary={item.summary}
               author={item.author.userName}
+              cover={item.cover}
             />
           );
         })}

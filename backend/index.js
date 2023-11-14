@@ -17,6 +17,7 @@ const secret = "asdfe45we45w34wegw2345werjwkkhgfdfgg";
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json()); //express json parserű
 app.use(cookieParser()); //wee need to add a cookie parser
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //connect to the database
 mongoose.connect(
