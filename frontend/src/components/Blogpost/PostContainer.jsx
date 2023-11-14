@@ -31,6 +31,7 @@ const PostContainer = () => {
               summary={item.summary}
               author={item.author.userName}
               cover={item.cover}
+              _id={item._id}
             />
           );
         })}

@@ -5,6 +5,7 @@ import Login from "./components/Login/Login";
 import Registration from "./components/Login/Registration";
 import { UserContextProvider } from "./components/UserContext";
 import CreateNewPost from "./components/CreatePost/CreateNewPost";
+import PostMore from "./components/Blogpost/PostMore";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/create" exact element={<CreateNewPost />} />
+          <Route path="/post/:_id" exact element={<PostMore />} />
         </Routes>
       </div>
     </UserContextProvider>

@@ -1,11 +1,14 @@
 import styled from "styled-components"; //css
 //max 1 kép lehet. a kezdő index képp neki ez az indexpage
 import { format } from "date-fns";
+import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 
 const PicContainer = styled.div`
   //overflow: hidden;
   //background-color: yellow;
 `;
+
+const LinkContainer = styled(Link)``;
 
 const Pic = styled.img`
   width: 200px;
@@ -18,12 +21,14 @@ const Pic = styled.img`
 const Post = (props) => {
   return (
     <div>
-      <PicContainer>
-        <Pic src={"http://localhost:4000/" + props.cover[0]} alt="" />
-      </PicContainer>
-      <div>
-        <h1>{props.title}</h1>
-      </div>
+      <LinkContainer to={`post/${props._id}`}>
+        <PicContainer>
+          <Pic src={"http://localhost:4000/" + props.cover[0]} alt="" />
+        </PicContainer>
+        <div>
+          <h1>{props.title}</h1>
+        </div>
+      </LinkContainer>
       <div>
         <div>
           <p>{props.author}</p>
