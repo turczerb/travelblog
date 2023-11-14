@@ -139,6 +139,12 @@ app.get("/post", async (req, res) => {
   );
 });
 
+app.get("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const postDoc = await Post.findById(id);
+  res.json(postDoc);
+});
+
 app.listen(4000); //itt fog figyelni?
 
 //mongodb+srv://turczerb:l9As72eXSp6dAfa6@cluster0.tjppqxh.mongodb.net/?retryWrites=true&w=majority

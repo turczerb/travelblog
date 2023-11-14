@@ -32,6 +32,7 @@ const PostContainer = () => {
               author={item.author.userName}
               cover={item.cover}
               _id={item._id}
+              isChecked={item.isChecked}
             />
           );
         })}
