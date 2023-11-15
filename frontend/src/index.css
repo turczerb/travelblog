@@ -6,3 +6,4 @@ code {
 a {
   text-decoration: none;
 }
+@import "~react-image-gallery/styles/css/image-gallery.css";
