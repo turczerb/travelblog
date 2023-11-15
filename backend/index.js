@@ -78,7 +78,7 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("Ok");
 });
 
-app.post("/post", uploadMiddleware.array("file", 4), async (req, res) => {
+app.post("/post", uploadMiddleware.array("file", 7), async (req, res) => {
   //rename the files. and add some extension so we can open it
   coverPath = [];
   if (req.files) {
@@ -141,7 +141,7 @@ app.get("/post", async (req, res) => {
 
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params;
-  const postDoc = await Post.findById(id);
+  const postDoc = await Post.findById(id).populate("author", ["userName"]);
   res.json(postDoc);
 });
 
