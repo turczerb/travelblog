@@ -38,6 +38,17 @@ const FirstElement = styled.div`
   grid-template-columns: 1fr 3fr;
 `;
 
+const BasicDataConti = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 2fr 4fr;
+`;
+
+const Title = styled.h1`
+  font-size: 60px;
+  font-family: "Playpen Sans", cursive;
+  font-weight: bold;
+`;
+
 //kell az id h egy specifikus  posztot fetcheljünk le. honnét szedem az idt? useParams
 const PostMore = () => {
   const [data, setData] = useState("");
@@ -70,23 +81,18 @@ const PostMore = () => {
       <OutterContainer>
         <div>
           <FirstElement>
-            <div>
+            <BasicDataConti>
+              <div></div>
               <div>
-                <h1>{data.title}</h1>
+                <Title>{data.title}</Title>
               </div>
               <div>
                 <div>{data.author.userName}</div>
-              </div>
-              <div>
                 <div>{format(new Date(data.createdAt), "MMMM d, yyyy")}</div>
-              </div>
-              <div>
                 <div>{data.placeChange}</div>
-              </div>
-              <div>
                 <div>{data.selectedOptions}</div>
               </div>
-            </div>
+            </BasicDataConti>
             <div>
               <PicConti>
                 <ImageGallery items={tomb} />

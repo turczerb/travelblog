@@ -3,6 +3,20 @@ import { useEffect, useState } from "react";
 import styled from "styled-components"; //css
 //max 1 kép lehet. a kezdő index képp neki ez az indexpage
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+`;
+
 const PostContainer = () => {
   //kell egy useeffect h fetcheljük a datát a saját adatbázisunkból.
   const [data, setData] = useState([]);
@@ -18,8 +32,8 @@ const PostContainer = () => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <Container>
+      <InnerContainer>
         {data.map((item, index) => {
           return (
             <Post
@@ -36,8 +50,8 @@ const PostContainer = () => {
             />
           );
         })}
-      </div>
-    </div>
+      </InnerContainer>
+    </Container>
   );
 };
 

@@ -1,11 +1,7 @@
 import PostContainer from "./Blogpost/PostContainer";
 
 const Home = () => {
-  return (
-    <div>
-      <PostContainer />
-    </div>
-  );
+  return <PostContainer />;
 };
 
 export default Home;
