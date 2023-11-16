@@ -1,12 +1,12 @@
 import styled from "styled-components"; //css
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUp from "../PopUpFolder/PopUp";
 import { NavbarData } from "../NavBar/NavBarData";
 import Select from "react-select";
 import "../CreatePost/create.css";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { modules } from "./ModuleData";
 
 const OutContainer = styled.div`
@@ -45,6 +45,7 @@ const options2 = NavbarData[2].subNav;
 });*/
 
 const EditPost = () => {
+  const { _id } = useParams();
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [placeChange, setPlaceChange] = useState("");
@@ -55,6 +56,20 @@ const EditPost = () => {
   const [redirect, setRedirect] = useState(false);
   const [visible, setVisible] = useState(false);
   const [failPost, setFailPost] = useState(false);
+
+  console.log("mit kapunk" + _id);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/post/" + _id).then((response) => {
+      response.json().then((data) => {
+        setTitle(data.title);
+        setSummary(data.summary);
+        setPlaceChange(data.placeChange);
+        setSelectedOptions(data.selectedOptions);
+        setContent(data.content);
+      });
+    });
+  }, []);
 
   const handlePlaceChange = (e) => {
     setPlaceChange(e.target.value);

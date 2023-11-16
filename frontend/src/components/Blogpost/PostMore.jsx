@@ -56,6 +56,7 @@ const PostMore = () => {
   const [data, setData] = useState("");
   const { userInfo } = useContext(UserContext); //ezt honnét szedI??
   const { _id } = useParams(); //post id
+  console.log("ez az id kell" + _id);
 
   //ehhez is kell andpoint index.js-be
   useEffect(() => {
