@@ -6,6 +6,7 @@ import Registration from "./components/Login/Registration";
 import { UserContextProvider } from "./components/UserContext";
 import CreateNewPost from "./components/CreatePost/CreateNewPost";
 import PostMore from "./components/Blogpost/PostMore";
+import EditPost from "./components/EditPost/EditPost";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/create" exact element={<CreateNewPost />} />
           <Route path="/post/:_id" exact element={<PostMore />} />
+          <Route path="/edit/:_id" exact element={<EditPost />} />
         </Routes>
       </div>
     </UserContextProvider>

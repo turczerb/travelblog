@@ -9,7 +9,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: grey;
-  width: 75%;
+  width: 60%;
   border: 5px solid red;
   margin: 20px;
 `;
@@ -28,8 +28,8 @@ const MainTitle = styled.h1`
 const LinkContainer = styled(Link)``;
 
 const Pic = styled.img`
-  width: 400px;
-  weight: 400px;
+  width: 300px;
+  weight: 300px;
   // margin: -20% 0px -10px -40%;
   // max-width: 200%;
   //max-height: 200%;

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import styled from "styled-components"; //css
 import ImageGallery from "react-image-gallery"; //gallery
 import "../../index.css";
+import { UserContext } from "../UserContext";
+import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 
 const Pic = styled.img`
   width: 50%;
@@ -52,7 +54,8 @@ const Title = styled.h1`
 //kell az id h egy specifikus  posztot fetcheljünk le. honnét szedem az idt? useParams
 const PostMore = () => {
   const [data, setData] = useState("");
-  const { _id } = useParams();
+  const { userInfo } = useContext(UserContext); //ezt honnét szedI??
+  const { _id } = useParams(); //post id
 
   //ehhez is kell andpoint index.js-be
   useEffect(() => {
@@ -74,8 +77,6 @@ const PostMore = () => {
     });
   }
 
-  console.log(tomb);
-
   return (
     <Container>
       <OutterContainer>
@@ -88,6 +89,11 @@ const PostMore = () => {
               </div>
               <div>
                 <div>{data.author.userName}</div>
+                {userInfo.id === data.author._id && (
+                  <div>
+                    <Link to={`/edit/${data._id}`}>Edit this post</Link>
+                  </div>
+                )}
                 <div>{format(new Date(data.createdAt), "MMMM d, yyyy")}</div>
                 <div>{data.placeChange}</div>
                 <div>{data.selectedOptions}</div>

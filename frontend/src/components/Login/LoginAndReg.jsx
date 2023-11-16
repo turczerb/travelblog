@@ -5,7 +5,7 @@ import { UserContext } from "../UserContext";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 `;
 
@@ -55,12 +55,14 @@ const LoginAndReg = () => {
         {userName && !isADmin && (
           <>
             <Link to="/create">create a new post</Link>
+            <Link to="/myposts">my posts</Link>
             <a onClick={logout}> Logout</a>
           </>
         )}
         {userName && isADmin && (
           <>
             <Link to="/create">create a new post</Link>
+            <Link to="/myposts">my posts</Link>
             <Link to="/check">check the waiting posts</Link>
             <a>Logout</a>
           </>
