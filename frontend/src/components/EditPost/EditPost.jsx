@@ -41,6 +41,11 @@ const PicInnerConti = styled.div`
   justify-content: center;
 `;
 
+const DeleteIcon = styled(TiDelete)`
+  color: red;
+  font-size: 180%;
+`;
+
 const ButtonConti = styled.div`
   display: flex;
 
@@ -113,6 +118,10 @@ const EditPost = () => {
     setFiles(e.target.files);
   };
 
+  const picDelete = (index) => {
+    console.log(index);
+  };
+
   const updatePost = (e) => {
     e.preventDefault();
   };
@@ -149,8 +158,12 @@ const EditPost = () => {
             {pictures.map((item, index) => {
               return (
                 <>
-                  <Pic src={"http://localhost:4000/" + item} alt="" />
-                  <TiDelete />
+                  <Pic
+                    src={"http://localhost:4000/" + item}
+                    alt=""
+                    key={index}
+                  />
+                  <DeleteIcon onClick={() => picDelete(index)} />
                 </>
               );
             })}
