@@ -8,6 +8,7 @@ import Select from "react-select";
 import "../CreatePost/create.css";
 import { Navigate, useParams } from "react-router-dom";
 import { modules } from "./ModuleData";
+import { TiDelete } from "react-icons/ti";
 
 const OutContainer = styled.div`
   display: grid;
@@ -26,6 +27,18 @@ const Form = styled.form`
   display: grid;
   grid-template-rows: 1fr;
   grid-gap: 10px;
+`;
+
+const Pic = styled.img`
+  width: 10%;
+  margin: 10px;
+  border-radius: 7px;
+`;
+
+const PicInnerConti = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ButtonConti = styled.div`
@@ -56,6 +69,7 @@ const EditPost = () => {
   const [redirect, setRedirect] = useState(false);
   const [visible, setVisible] = useState(false);
   const [failPost, setFailPost] = useState(false);
+  const [pictures, setPicture] = useState([]);
 
   console.log("mit kapunk" + _id);
 
@@ -67,6 +81,9 @@ const EditPost = () => {
         setPlaceChange(data.placeChange);
         setSelectedOptions(data.selectedOptions);
         setContent(data.content);
+        setPicture(data.cover);
+        console.log("mi van ebbe a databa");
+        console.log(data.cover);
       });
     });
   }, []);
@@ -128,6 +145,16 @@ const EditPost = () => {
             name="img"
             required
           />
+          <PicInnerConti>
+            {pictures.map((item, index) => {
+              return (
+                <>
+                  <Pic src={"http://localhost:4000/" + item} alt="" />
+                  <TiDelete />
+                </>
+              );
+            })}
+          </PicInnerConti>
           <select
             onChange={handlePlaceChange}
             placeholder="select one!"
