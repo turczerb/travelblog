@@ -8,10 +8,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: #e7e2df;
   width: 60%;
-  border: 5px solid red;
+  border: 1px solid red;
   margin: 20px;
+  border-radius: 25px;
 `;
 
 const PicContainer = styled.div`

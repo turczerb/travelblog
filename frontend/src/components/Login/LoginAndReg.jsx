@@ -23,6 +23,14 @@ const Title = styled(Link)`
   }
 `;
 
+const NavTitle = styled.div`
+  padding: 5px;
+  margin: 4px;
+  &:hover {
+    border-left: 2px solid #946b2d;
+  }
+`;
+
 //so here we have to use ternary, is it already logged in? we have a cookie inside our token
 //cookie valid? we need to create an endpoint for it !! index.js
 const LoginAndReg = () => {
@@ -65,18 +73,18 @@ const LoginAndReg = () => {
       <Container>
         {userName && !isADmin && (
           <>
-            <div>
+            <NavTitle>
               <LuUser2 />
               <Link to="/myaccount">{userInfo.userName}</Link>
-            </div>
-            <div>
+            </NavTitle>
+            <NavTitle>
               <IoCreateOutline />
               <Link to="/create">create a new post</Link>
-            </div>
-            <div>
+            </NavTitle>
+            <NavTitle>
               <RiLogoutBoxRLine />
               <Link onClick={logout}> Logout</Link>
-            </div>
+            </NavTitle>
           </>
         )}
         {userName && isADmin && (

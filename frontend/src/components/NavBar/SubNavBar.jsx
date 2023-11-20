@@ -17,6 +17,10 @@ const SubElement = styled(Link)`
   background-color: yellow;
 `;
 
+const ElementLink = styled(Link)`
+  color: black;
+`;
+
 const Title = styled.div`
   &:hover {
     border-left: 2px solid #946b2d;
@@ -37,7 +41,7 @@ const SubNavBar = ({ item }) => {
     <div ref={ref}>
       <Element to={item.path} onClick={item.subNav && showComponent}>
         <div>
-          <a href="/">{item.title}</a>
+          <ElementLink href="/">{item.title}</ElementLink>
           {item.subNav && isComponentVisible
             ? item.iconOpened
             : item.subNav

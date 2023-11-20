@@ -1,3 +1,4 @@
+import "../../index.css";
 import SubNavBar from "./SubNavBar";
 import LoginAndReg from "../Login/LoginAndReg";
 import styled from "styled-components"; //css
@@ -11,13 +12,15 @@ const Container = styled.div`
 
 const Nav = styled.nav`
   // ez itt maga a home, destination, typo of travel pozit adta meg,
-
   padding: 20px;
-  margin-top: 30px;
+
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   text-decoration: none;
+  background-color: #e7e2df;
+  color: black;
+  font-family: "Lato", sans-serif;
 `;
 
 const ImgContainer = styled.div`
@@ -26,13 +29,13 @@ const ImgContainer = styled.div`
 `;
 
 const Pic = styled.img`
-  width: 170px;
+  width: 220px;
   padding-top: 20px;
   transition: transform 2s ease-in-out;
 
-  &:hover {
-    transform: rotate(360deg);
-  }
+  // &:hover {
+  // transform: rotate(360deg);
+  //}
 `;
 
 const HeaderImage = styled.div`
@@ -45,10 +48,11 @@ const NavBarContents = styled.div`
   width: 75%;
   display: flex;
   justify-content: space-evenly;
+  color: black;
 `;
 
 const Navbar = () => {
-  let img = images("./logo.png");
+  let img = images("./logo3.png");
   return (
     <Container>
       <ImgContainer>
