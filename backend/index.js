@@ -71,7 +71,7 @@ app.get("/profile", (req, res) => {
     if (err) throw err;
     res.json(info);
   });
-  res.json(req.cookies);
+  //  res.json(req.cookies);
 });
 
 app.post("/logout", (req, res) => {
@@ -127,6 +127,68 @@ app.post("/post", uploadMiddleware.array("file", 7), async (req, res) => {
       author: info.id,
     });
     res.json(postDoc);
+  });
+});
+
+//edit post
+app.put("/post", uploadMiddleware.array("file", 7), async (req, res) => {
+  coverPath = [];
+  if (req.files) {
+    for (let i = 0; i < req.files.length; i++) {
+      const { originalname, path } = req.files[i];
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1]; //utolsó elem
+      newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+      coverPath.push(newPath);
+    }
+  }
+
+  selectedOptionsValues = [];
+
+  if (req.body.selectedOptions) {
+    console.log("checking selected options");
+    for (let i = 0; i < req.body.selectedOptions.length; i++) {
+      selectedOptionsValues.push(req.body.selectedOptions[i]);
+    }
+  }
+
+  console.log(selectedOptionsValues);
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+
+    const {
+      postID,
+      title,
+      summary,
+      placeChange,
+      selectedOptions,
+      content,
+      cover,
+      isChecked,
+    } = req.body;
+
+    const postDoc = await Post.findOneAndUpdate(
+      { _id: postID },
+      {
+        title,
+        summary,
+        placeChange,
+        selectedOptions: selectedOptionsValues,
+        content,
+        cover: coverPath,
+        isChecked,
+        author: info.id,
+      },
+      {
+        new: true,
+      }
+    );
+    //const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+    console.log(postDoc);
+    res.json({ postDoc, info });
+    //res.json(postDoc);
   });
 });
 

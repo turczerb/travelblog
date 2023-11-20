@@ -7,6 +7,7 @@ import { UserContextProvider } from "./components/UserContext";
 import CreateNewPost from "./components/CreatePost/CreateNewPost";
 import PostMore from "./components/Blogpost/PostMore";
 import EditPost from "./components/EditPost/EditPost";
+import UserAccount from "./components/UserAccount/UserAccount";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/create" exact element={<CreateNewPost />} />
           <Route path="/post/:_id" exact element={<PostMore />} />
           <Route path="/edit/:_id" exact element={<EditPost />} />
+          <Route path="/myaccount" exact element={<UserAccount />} />
         </Routes>
       </div>
     </UserContextProvider>

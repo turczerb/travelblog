@@ -54,29 +54,23 @@ const ButtonConti = styled.div`
 `;
 
 const options2 = NavbarData[2].subNav;
-/*NavbarData.map((item, i) => {
-  if (item.title === "Type of travel") {
-    console.log(item);
-    console.log(item.subNav);
-    return item.subNav;
-  }
-});*/
 
 const EditPost = () => {
-  const { _id } = useParams();
+  const { _id } = useParams(); // ??
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [placeChange, setPlaceChange] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [files, setFiles] = useState(null);
+  const [files, setFiles] = useState([]); // ez helyett lett a pictures? nmtom
   const [content, setContent] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [visible, setVisible] = useState(false);
   const [failPost, setFailPost] = useState(false);
   const [pictures, setPicture] = useState([]);
-
+  const [userId, setUserId] = useState(_id);
   console.log("mit kapunk" + _id);
+  console.log("mit kapunk az userId által" + userId);
 
   useEffect(() => {
     fetch("http://localhost:4000/post/" + _id).then((response) => {
@@ -86,7 +80,8 @@ const EditPost = () => {
         setPlaceChange(data.placeChange);
         setSelectedOptions(data.selectedOptions);
         setContent(data.content);
-        setPicture(data.cover);
+        setFiles(data.cover); //ez volt setPicure
+
         console.log("mi van ebbe a databa");
         console.log(data.cover);
       });
@@ -120,14 +115,48 @@ const EditPost = () => {
 
   const picDelete = (index) => {
     console.log(index);
+    const temp = [...files]; //picture volt eddig
+    temp.splice(index, 1);
+    setFiles(temp);
+    console.log("tempi tartalma");
+    console.log(temp);
+    //temp = pictures;
+    console.log("picture tartalma");
   };
 
-  const updatePost = (e) => {
+  const updatePost = async (e) => {
     e.preventDefault();
+
+    if (!files) {
+      console.log("no file selected");
+      return;
+    }
+    const data = new FormData(); //object. will contan everythinf
+    for (let i = 0; i < files.length; i++) {
+      data.append("file", files[i]);
+    }
+    data.append("postID", _id);
+    data.append("title", title);
+    data.append("summary", summary);
+    data.append("placeChange", placeChange);
+    for (let i = 0; i < selectedOptions.length; i++) {
+      data.append("selectedOptions", selectedOptions[i].value);
+      console.log("added option");
+    }
+    data.append("content", content);
+    data.append("isChecked", isChecked);
+    data.append("userID", userId);
+
+    await fetch("http://localhost:4000/post", {
+      method: "PUT",
+      body: data,
+      credentials: "include",
+    });
+    //setRedirect(true);
   };
 
   if (redirect) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/post/" + _id} />;
   }
 
   return (
@@ -155,18 +184,21 @@ const EditPost = () => {
             required
           />
           <PicInnerConti>
-            {pictures.map((item, index) => {
-              return (
-                <>
-                  <Pic
-                    src={"http://localhost:4000/" + item}
-                    alt=""
-                    key={index}
-                  />
-                  <DeleteIcon onClick={() => picDelete(index)} />
-                </>
-              );
-            })}
+            {!(files.length > 1)
+              ? ""
+              : files.map((item, index) => {
+                  console.log(files);
+                  return (
+                    <>
+                      <Pic
+                        src={"http://localhost:4000/" + item}
+                        alt=""
+                        key={index}
+                      />
+                      <DeleteIcon onClick={() => picDelete(index)} />
+                    </>
+                  );
+                })}
           </PicInnerConti>
           <select
             onChange={handlePlaceChange}
