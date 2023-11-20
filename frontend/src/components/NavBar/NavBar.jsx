@@ -30,6 +30,7 @@ const ImgContainer = styled.div`
 
 const Pic = styled.img`
   width: 220px;
+
   padding-top: 20px;
   transition: transform 2s ease-in-out;
 
@@ -37,11 +38,23 @@ const Pic = styled.img`
   // transform: rotate(360deg);
   //}
 `;
+const FramePicHolder = styled.div`
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 180px;
+`;
+
+const FirstPicContainer = styled.div`
+  position: relative;
+  margin-left: 60px;
+`;
 
 const HeaderImage = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  //justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
 
 const NavBarContents = styled.div`
@@ -55,13 +68,21 @@ const NavBarContents = styled.div`
 
 const Navbar = () => {
   let img = images("./logo3.png");
+  let img2 = images("./airplane.png");
   return (
     <Container>
       <ImgContainer>
-        <div></div>
+        <FirstPicContainer>
+          <FramePicHolder>
+            <Pic src={img2} alt="pic"></Pic>
+          </FramePicHolder>
+        </FirstPicContainer>
         <div>
           <HeaderImage>
+            <div></div>
             <Pic src={img} alt="pic"></Pic>
+
+            <div></div>
           </HeaderImage>
         </div>
         <div></div>
