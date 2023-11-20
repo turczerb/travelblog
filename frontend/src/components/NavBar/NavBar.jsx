@@ -46,8 +46,10 @@ const HeaderImage = styled.div`
 
 const NavBarContents = styled.div`
   width: 75%;
-  display: flex;
-  justify-content: space-evenly;
+  //display: flex;
+  //6justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   color: black;
 `;
 
@@ -66,6 +68,7 @@ const Navbar = () => {
       </ImgContainer>
       <Nav>
         <NavBarContents>
+          <div></div>
           {NavbarData.map((item, index) => {
             return <SubNavBar item={item} key={index} />;
           })}

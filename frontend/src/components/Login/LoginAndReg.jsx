@@ -23,6 +23,11 @@ const Title = styled(Link)`
   }
 `;
 
+const LinkTitle = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
 const NavTitle = styled.div`
   padding: 5px;
   margin: 4px;
@@ -75,15 +80,15 @@ const LoginAndReg = () => {
           <>
             <NavTitle>
               <LuUser2 />
-              <Link to="/myaccount">{userInfo.userName}</Link>
+              <LinkTitle to="/myaccount">{userInfo.userName}</LinkTitle>
             </NavTitle>
             <NavTitle>
               <IoCreateOutline />
-              <Link to="/create">create a new post</Link>
+              <LinkTitle to="/create">create a new post</LinkTitle>
             </NavTitle>
             <NavTitle>
               <RiLogoutBoxRLine />
-              <Link onClick={logout}> Logout</Link>
+              <LinkTitle onClick={logout}> Logout</LinkTitle>
             </NavTitle>
           </>
         )}
@@ -91,21 +96,21 @@ const LoginAndReg = () => {
           <>
             <div>
               <LuUser2 />
-              <Link to="/myaccount">{userName}</Link>
+              <LinkTitle to="/myaccount">{userName}</LinkTitle>
             </div>
             <div>
               <IoCreateOutline />
-              <Link to="/create">create a new post</Link>
+              <LinkTitle to="/create">create a new post</LinkTitle>
             </div>
 
             <div>
               <BsFilePost />
-              <Link to="/check">check the waiting posts</Link>
+              <LinkTitle to="/check">check the waiting posts</LinkTitle>
             </div>
 
             <div>
               <RiLogoutBoxRLine />
-              <Link onClick={logout}> Logout</Link>
+              <LinkTitle onClick={logout}> Logout</LinkTitle>
             </div>
           </>
         )}
