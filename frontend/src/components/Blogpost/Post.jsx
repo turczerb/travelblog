@@ -10,9 +10,9 @@ const Container = styled.div`
   justify-content: center;
   background-color: #e7e2df;
   width: 60%;
-  border: 1px solid red;
+  border: 1px solid #946b2d;
   margin: 20px;
-  border-radius: 25px;
+  border-radius: 10px;
 `;
 
 const PicContainer = styled.div`
@@ -49,7 +49,7 @@ const Post = (props) => {
       </LinkContainer>
       <div>
         <div>
-          <p>{props.author}</p>
+          <p> by {props.author}</p>
           <time>{format(new Date(props.createdAt), "MMMM d, yyyy HH:mm")}</time>
         </div>
         <div>

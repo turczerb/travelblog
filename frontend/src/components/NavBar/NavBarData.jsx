@@ -3,11 +3,11 @@ import * as RiIcons from "react-icons/ri";
 
 export const NavbarData = [
   {
-    title: "Home",
+    title: "HOME",
     path: "/",
   },
   {
-    title: "Destinations",
+    title: "DESTINATIONS",
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
@@ -50,7 +50,7 @@ export const NavbarData = [
     ],
   },
   {
-    title: "Type of travel",
+    title: "TYPE OF TRAVEL",
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [

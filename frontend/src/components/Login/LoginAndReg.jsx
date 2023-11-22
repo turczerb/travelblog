@@ -26,6 +26,15 @@ const Title = styled(Link)`
 const LinkTitle = styled(Link)`
   text-decoration: none;
   color: black;
+  padding: 10px;
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
+const IconStyle = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
 
 const NavTitle = styled.div`
@@ -33,6 +42,7 @@ const NavTitle = styled.div`
   margin: 4px;
   &:hover {
     border-left: 2px solid #946b2d;
+    font-weight: bold;
   }
 `;
 
@@ -79,15 +89,23 @@ const LoginAndReg = () => {
         {userName && !isADmin && (
           <>
             <NavTitle>
-              <LuUser2 />
+              <IconStyle to="/myaccount">
+                <LuUser2 />
+              </IconStyle>
               <LinkTitle to="/myaccount">{userInfo.userName}</LinkTitle>
             </NavTitle>
+
             <NavTitle>
-              <IoCreateOutline />
+              <IconStyle to="/create">
+                <IoCreateOutline />
+              </IconStyle>
               <LinkTitle to="/create">create a new post</LinkTitle>
             </NavTitle>
+
             <NavTitle>
-              <RiLogoutBoxRLine />
+              <IconStyle onClick={logout}>
+                <RiLogoutBoxRLine />
+              </IconStyle>
               <LinkTitle onClick={logout}> Logout</LinkTitle>
             </NavTitle>
           </>

@@ -22,8 +22,12 @@ const ElementLink = styled(Link)`
 `;
 
 const Title = styled.div`
+  padding: 10px;
   &:hover {
     border-left: 2px solid #946b2d;
+    font-weight: bold;
+    background-color: white;
+    //border-radius: 20px;
   }
 `;
 
