@@ -129,6 +129,8 @@ const CreateNewPost = () => {
             placeholder={"Summary"}
             value={summary}
             onChange={handleSummaryChange}
+            maxLength="105"
+            minLength="80"
           />
           <input
             type="file"

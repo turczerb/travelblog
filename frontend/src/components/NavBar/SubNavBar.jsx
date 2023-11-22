@@ -9,12 +9,12 @@ const Element = styled.div``;
 //posi absolute: lenyilo menu nm nyilik le mindenütt csak ahol kell.
 const DropDownContainer = styled.div`
   position: absolute;
+  z-index: 99;
 `;
 
 const SubElement = styled(Link)`
   text-decoration: none;
   color: black;
-  background-color: yellow;
 `;
 
 const ElementLink = styled(Link)`
@@ -23,6 +23,7 @@ const ElementLink = styled(Link)`
 
 const Title = styled.div`
   padding: 10px;
+
   &:hover {
     border-left: 2px solid #946b2d;
     font-weight: bold;

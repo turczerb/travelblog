@@ -1,5 +1,6 @@
 import "../../index.css";
 import SubNavBar from "./SubNavBar";
+import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 import LoginAndReg from "../Login/LoginAndReg";
 import styled from "styled-components"; //css
 import { NavbarData } from "./NavBarData"; // contains nav data

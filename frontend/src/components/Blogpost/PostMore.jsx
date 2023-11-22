@@ -23,9 +23,9 @@ const PicConti = styled.div`
 `;
 
 const OutterContainer = styled.div`
-  background-color: yellow;
+  background-color: #e7e2df;
   width: 70%;
-  //margin: 15% 0px 0px 15%;
+  margin-top: 40px;
   padding: 40px;
 `;
 

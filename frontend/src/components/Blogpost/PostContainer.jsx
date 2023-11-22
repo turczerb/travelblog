@@ -20,7 +20,9 @@ const InnerContainer = styled.div`
   width: 70%;
 `;
 
-const SecondInnerContainer = styled.div``;
+const SecondInnerContainer = styled.div`
+  margin: 120px;
+`;
 
 const Pic = styled.img`
   width: 560px;
