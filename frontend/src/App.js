@@ -8,6 +8,7 @@ import CreateNewPost from "./components/CreatePost/CreateNewPost";
 import PostMore from "./components/Blogpost/PostMore";
 import EditPost from "./components/EditPost/EditPost";
 import UserAccount from "./components/UserAccount/UserAccount";
+import AccountDetailsAndUserPosts from "./components/UserAccount/AccountDetailsAndUserPosts";
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
           <Route path="/create" exact element={<CreateNewPost />} />
           <Route path="/post/:_id" exact element={<PostMore />} />
           <Route path="/edit/:_id" exact element={<EditPost />} />
-          <Route path="/myaccount" exact element={<UserAccount />} />
+          <Route
+            path="/myaccount"
+            exact
+            element={<AccountDetailsAndUserPosts />}
+          />
         </Routes>
       </div>
     </UserContextProvider>

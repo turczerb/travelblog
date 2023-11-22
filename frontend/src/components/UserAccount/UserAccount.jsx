@@ -4,20 +4,36 @@ import UserPosts from "./UserPosts";
 
 const UserAccount = () => {
   const { userInfo } = useContext(UserContext); //ezt honnét szedI??
+  const [data, setData] = useState([]); //az id alapján visszaszedett datát tesszük ebbe be
 
-  console.log(userInfo);
+  useEffect(() => {
+    fetch("http://localhost:4000/myaccount/" + userInfo.id).then((response) => {
+      response.json().then((data) => {
+        console.log("xx");
+        //console.log(data);
+        setData(data);
+      });
+    });
+  }, []);
+
+  console.log("mivvan benne");
+  console.log(userInfo.id);
   return (
     <div>
-      <div>{userInfo.userName}</div>
-      <div>emailcim</div>
-      <div>passworld</div>
       <div>
-        <button>change datas</button>
+        <label>username: </label>
+        <div>{userInfo.userName}</div>
+      </div>
+      <div>
+        <label>e-mail: </label>
+        <div>{data.email}</div>
+      </div>
+
+      <div>
+        <button>change data</button>
         <button>delete your acc</button>
       </div>
-      <div>
-        <UserPosts />
-      </div>
+      <div></div>
     </div>
   );
 };

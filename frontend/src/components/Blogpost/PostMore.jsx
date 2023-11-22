@@ -6,6 +6,7 @@ import ImageGallery from "react-image-gallery"; //gallery
 import "../../index.css";
 import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
+import { IoCreateOutline } from "react-icons/io5";
 
 const Pic = styled.img`
   width: 50%;
@@ -13,6 +14,14 @@ const Pic = styled.img`
   // margin: -20% 0px -10px -40%;
   // max-width: 200%;
   //max-height: 200%;
+`;
+
+const Edit = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 const PicConti = styled.div`
@@ -43,6 +52,7 @@ const FirstElement = styled.div`
 const BasicDataConti = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr 4fr;
+  colour: black;
 `;
 
 const Title = styled.h1`
@@ -92,7 +102,8 @@ const PostMore = () => {
                 <div>{data.author.userName}</div>
                 {userInfo.id === data.author._id && (
                   <div>
-                    <Link to={`/edit/${data._id}`}>Edit this post</Link>
+                    <IoCreateOutline />
+                    <Edit to={`/edit/${data._id}`}>Edit this post</Edit>
                   </div>
                 )}
                 <div>{format(new Date(data.createdAt), "MMMM d, yyyy")}</div>

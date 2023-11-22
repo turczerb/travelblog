@@ -207,6 +207,18 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
+app.get("/myaccount/:id", async (req, res) => {
+  const { id } = req.params;
+  const userPerson = await User.findById(id).populate("userName");
+  res.json(userPerson);
+});
+
+app.get("/myaccount/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const listPosts = await Post.find({ author: id });
+  res.json(listPosts);
+});
+
 app.listen(4000); //itt fog figyelni?
 
 //mongodb+srv://turczerb:l9As72eXSp6dAfa6@cluster0.tjppqxh.mongodb.net/?retryWrites=true&w=majority
