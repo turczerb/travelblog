@@ -28,7 +28,7 @@ const ButtonDesginEdit = styled.button`
 
 const ButtonDesginDelete = styled.button`
   margin: 5px;
-  background-color: red;
+  background-color: rgba(197, 25, 25, 0.8);
   border-radius: 15px;
   border: none;
   width: 50px;
