@@ -215,7 +215,7 @@ app.get("/myaccount/:id", async (req, res) => {
 
 app.get("/myaccount/post/:id", async (req, res) => {
   const { id } = req.params;
-  const listPosts = await Post.find({ author: id });
+  const listPosts = await Post.find({ author: id }).sort({ createdAt: -1 });
   res.json(listPosts);
 });
 

@@ -20,6 +20,10 @@ const ButtonDesginEdit = styled.button`
   border-radius: 15px;
   border: none;
   width: 50px;
+  height: 25px;
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 const ButtonDesginDelete = styled.button`
@@ -28,6 +32,14 @@ const ButtonDesginDelete = styled.button`
   border-radius: 15px;
   border: none;
   width: 50px;
+  height: 25px;
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
+const Pic = styled.img`
+  width: 30%;
 `;
 
 const UserPost = (props) => {
@@ -38,7 +50,12 @@ const UserPost = (props) => {
         <div>
           <div></div>
           <div>{props.item.placeChange}</div>
-          <div>{props.item.summary}</div>
+          <div>
+            <Pic src={"http://localhost:4000/" + props.item.cover[0]} alt="" />
+            <div>{props.item.summary}</div>
+          </div>
+
+          <p>{format(new Date(props.item.createdAt), "MMM d, yyyy")}</p>
         </div>
         <ButConti>
           <ButtonDesginDelete>delete</ButtonDesginDelete>

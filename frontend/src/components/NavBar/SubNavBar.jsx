@@ -10,6 +10,8 @@ const Element = styled.div``;
 const DropDownContainer = styled.div`
   position: absolute;
   z-index: 99;
+  background-color: white;
+  border-radius: 7px;
 `;
 
 const SubElement = styled(Link)`
