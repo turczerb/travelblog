@@ -26,6 +26,9 @@ const ButtonDesginEdit = styled(Link)`
   &:hover {
     font-weight: bold;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ButtonDesginDelete = styled(Link)`
@@ -39,6 +42,9 @@ const ButtonDesginDelete = styled(Link)`
   &:hover {
     font-weight: bold;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Pic = styled.img`
@@ -61,9 +67,11 @@ const UserPost = (props) => {
           <p>{format(new Date(props.item.createdAt), "MMM d, yyyy")}</p>
         </div>
         <ButConti>
-          <ButtonDesginDelete>delete</ButtonDesginDelete>
+          <ButtonDesginDelete>
+            <div>delete</div>
+          </ButtonDesginDelete>
           <ButtonDesginEdit to={`/edit/${props.item._id}`}>
-            edit
+            <div>edit</div>
           </ButtonDesginEdit>
         </ButConti>
       </div>
