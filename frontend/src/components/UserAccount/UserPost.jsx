@@ -2,6 +2,7 @@
 import { format } from "date-fns";
 import styled from "styled-components"; //css
 import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   padding: 10px;
@@ -52,9 +53,14 @@ const Pic = styled.img`
 `;
 
 const UserPost = (props) => {
+  const [showMore, setShowMore] = useState(false);
+  const [visible, setVisible] = useState(true);
+
   const deleteItem = (index) => {
     console.log("delete clicked");
     console.log(index);
+    setShowMore(true);
+    setVisible(false);
   };
 
   return (
@@ -79,6 +85,21 @@ const UserPost = (props) => {
             <div>edit</div>
           </ButtonDesginEdit>
         </ButConti>
+        {showMore ? (
+          <div>
+            <div>Are u sure to delete your post of {props.item.title} ?</div>
+            <div>
+              <div>
+                <Link>yes</Link>
+              </div>
+              <div>
+                <Link onClick={() => setShowMore(!showMore)}>no</Link>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </Container>
   );
