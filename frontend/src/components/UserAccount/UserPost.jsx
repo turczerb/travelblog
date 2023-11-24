@@ -52,6 +52,11 @@ const Pic = styled.img`
 `;
 
 const UserPost = (props) => {
+  const deleteItem = (index) => {
+    console.log("delete clicked");
+    console.log(index);
+  };
+
   return (
     <Container>
       <div>
@@ -67,7 +72,7 @@ const UserPost = (props) => {
           <p>{format(new Date(props.item.createdAt), "MMM d, yyyy")}</p>
         </div>
         <ButConti>
-          <ButtonDesginDelete>
+          <ButtonDesginDelete onClick={() => deleteItem(props.customindex)}>
             <div>delete</div>
           </ButtonDesginDelete>
           <ButtonDesginEdit to={`/edit/${props.item._id}`}>

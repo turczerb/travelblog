@@ -49,7 +49,9 @@ const UserPosts = () => {
         <div>
           {filterData.length > 0
             ? filterData.map((item, index) => {
-                return <UserPost key={index} item={item} />;
+                console.log("index");
+                console.log(index);
+                return <UserPost key={index} customindex={index} item={item} />;
               })
             : "city not found "}
           <div></div>
