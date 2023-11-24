@@ -27,6 +27,7 @@ const UserPosts = () => {
           console.log(userInfo.id);
           setData(data);
           setFilterData(data);
+          console.log(data);
         });
       }
     );

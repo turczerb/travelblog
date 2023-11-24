@@ -1,11 +1,12 @@
 //poropsba át kapja a datát az userPost S-ból
 import { format } from "date-fns";
 import styled from "styled-components"; //css
+import { Link } from "react-router-dom"; //tudjunk másik oldalra jump
 
 const Container = styled.div`
   padding: 10px;
   background-color: #e7e2df;
-  margin: 5px;
+  margin-bottom: 30px;
 `;
 
 const ButConti = styled.div`
@@ -14,7 +15,8 @@ const ButConti = styled.div`
   margin: 5px;
 `;
 
-const ButtonDesginEdit = styled.button`
+const ButtonDesginEdit = styled(Link)`
+  color: black;
   margin: 5px;
   background-color: yellow;
   border-radius: 15px;
@@ -26,7 +28,8 @@ const ButtonDesginEdit = styled.button`
   }
 `;
 
-const ButtonDesginDelete = styled.button`
+const ButtonDesginDelete = styled(Link)`
+  color: black;
   margin: 5px;
   background-color: rgba(197, 25, 25, 0.8);
   border-radius: 15px;
@@ -59,7 +62,9 @@ const UserPost = (props) => {
         </div>
         <ButConti>
           <ButtonDesginDelete>delete</ButtonDesginDelete>
-          <ButtonDesginEdit>edit</ButtonDesginEdit>
+          <ButtonDesginEdit to={`/edit/${props.item._id}`}>
+            edit
+          </ButtonDesginEdit>
         </ButConti>
       </div>
     </Container>

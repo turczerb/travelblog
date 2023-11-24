@@ -1,4 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import styled from "styled-components"; //css
+
+const Bar = styled.input`
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 25px;
+  margin-top: 45px;
+  width: 40%;
+`;
 
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
@@ -35,7 +44,7 @@ const SearchBar = (props) => {
   return (
     <div>
       <div>
-        <input type="text" placeholder="search" onChange={handleSearch} />
+        <Bar type="text" placeholder="search.." onChange={handleSearch} />
       </div>
     </div>
   );
