@@ -1,35 +1,58 @@
 import UserPost from "./UserPost";
+import styled from "styled-components"; //css
+import ReactSearchBox from "react-search-box";
+import SearchBar from "./SearchBar";
 import { UserContext } from "../UserContext";
 import { useContext, useEffect, useState } from "react";
 const images = require.context("../../images");
 
+const Pic = styled.img`
+  width: 70%;
+`;
+
+const PicContainer = styled.div``;
+
 // itt fetchelem le az adott szent user poszjait
 
 const UserPosts = () => {
+  const { userInfo } = useContext(UserContext); //ezt honnét szedI??
   let img = images("./myposts.png");
   const [data, setData] = useState([]);
-  const { userInfo } = useContext(UserContext); //ezt honnét szedI??
+  const [filterData, setFilterData] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:4000/myaccount/post/" + userInfo.id).then(
       (response) => {
         response.json().then((data) => {
-          console.log("xx");
-          //console.log(data);
+          console.log(userInfo.id);
           setData(data);
+          setFilterData(data);
         });
       }
     );
   }, []);
 
+  //if (!data) return "";
+
   return (
     <div>
-      <img src={img} alt="pic"></img>
+      <PicContainer>
+        <Pic src={img} alt="pic"></Pic>
+      </PicContainer>
       <div>
-        {data.map((item, index) => {
-          return <UserPost key={index} item={item} />;
-        })}
-        <div></div>
+        <SearchBar
+          data={data}
+          filterData={filterData}
+          setFilterData={setFilterData}
+        />
+        <div>
+          {filterData.length > 0
+            ? filterData.map((item, index) => {
+                return <UserPost key={index} item={item} />;
+              })
+            : "city not found "}
+          <div></div>
+        </div>
       </div>
     </div>
   );

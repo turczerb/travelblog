@@ -5,16 +5,19 @@ import UserPosts from "./UserPosts";
 const UserAccount = () => {
   const { userInfo } = useContext(UserContext); //ezt honnét szedI??
   const [data, setData] = useState([]); //az id alapján visszaszedett datát tesszük ebbe be
+  const [temp, setTemp] = useState(userInfo.id);
 
   useEffect(() => {
-    fetch("http://localhost:4000/myaccount/" + userInfo.id).then((response) => {
+    fetch("http://localhost:4000/myaccount/" + temp).then((response) => {
       response.json().then((data) => {
         console.log("xx");
-        //console.log(data);
+        console.log(userInfo.id);
         setData(data);
       });
     });
   }, []);
+
+  if (!data) return "";
 
   console.log("mivvan benne");
   console.log(userInfo.id);
